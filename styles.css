@@ -1,0 +1,130 @@
+/* Estilo moderno para HTML original sin cambiar el contenido */
+:root {
+    color-scheme: light;
+    color: #1a1a2e;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    background: #eef4ff;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #1a1a2e;
+    background: radial-gradient(circle at top left, #8ab6ff 0%, transparent 28%),
+                radial-gradient(circle at bottom right, #ffd166 0%, transparent 30%),
+                #f5f8ff;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+main,
+body > * {
+    width: min(980px, 100%);
+}
+
+h1, h2, h3 {
+    margin: 0 0 18px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    letter-spacing: -0.04em;
+    color: #173a8a;
+}
+
+h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2rem);
+    color: #1f3d7a;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: #2a4d82;
+}
+
+p {
+    margin: 0 0 1.35rem;
+    color: #39415d;
+    font-size: 1rem;
+}
+
+body {
+    font-size: 1rem;
+    background-attachment: fixed;
+}
+
+body > * {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 28px;
+    box-shadow: 0 24px 48px rgba(32, 55, 121, 0.12);
+    padding: 34px 38px;
+    border: 1px solid rgba(88, 111, 250, 0.16);
+}
+
+h2 + p,
+h3 + p {
+    margin-top: -8px;
+}
+
+p + h2,
+p + h3,
+h1 + p {
+    margin-top: 0;
+}
+
+a {
+    color: #2553ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover,
+a:focus-visible {
+    text-decoration: underline;
+}
+
+@media (max-width: 720px) {
+    body {
+        padding: 24px 12px;
+    }
+
+    body > * {
+        padding: 28px 24px;
+        border-radius: 24px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.55rem;
+    }
+}
+
+@media (max-width: 520px) {
+    body > * {
+        padding: 22px 18px;
+    }
+
+    p {
+        font-size: 0.98rem;
+    }
+}
