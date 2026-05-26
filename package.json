@@ -1,0 +1,24 @@
+{
+  "name": "plataforma-juvenil-participacion",
+  "version": "1.0.0",
+  "description": "Este repositorio será utilizado para construir progresivamente un proyecto pedagógico sobre participación juvenil, transparencia, control ciudadano y tecnología.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angie11gen/plataforma-juvenil-participacion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/angie11gen/plataforma-juvenil-participacion/issues"
+  },
+  "homepage": "https://github.com/angie11gen/plataforma-juvenil-participacion#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
