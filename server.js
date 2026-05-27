@@ -24,29 +24,26 @@ app.get("/api/candidatos", function (req, res) {
     res.json(candidatos);
 });
 
-app.listen(port, () => {
-    console.log(`Servidor iniciado en http://localhost:${port}`);
-});
-
-app.post("/api/candidatos", function (req, res){
+app.post("/api/candidatos", function (req, res) {
     const nuevoCandidato = {
         id: Date.now(),
         nombre: req.body.nombre,
         rol: req.body.rol,
         propuesta: req.body.propuesta,
-        estado: "perfil de práctica académica"
+        estado: "perfil de práctica académica",
     };
-    
+
     if (!nuevoCandidato.nombre || !nuevoCandidato.rol || !nuevoCandidato.propuesta) {
-        return res.status(400).json({ 
-            mensaje: "Todos los campos son obligatorios" });
+        return res.status(400).json({ mensaje: "Todos los campos son obligatorios" });
     }
 
-   
+    const candidatos = leercandidato();
+    candidatos.push(nuevoCandidato);
+    guardarcandidato(candidatos);
+
+    return res.status(201).json(nuevoCandidato);
 });
 
-const candidatos = leercandidato();
-candidatos.push(nuevoCandidato);
-guardarcandidato(candidatos);
-
-res.status(201).json(nuevoCandidato);
+app.listen(port, () => {
+    console.log(`Servidor iniciado en http://localhost:${port}`);
+});
