@@ -44,10 +44,15 @@
   </main>
 
   <script>
-    const WEBHOOK_N8N = "URL_DEL_WEBHOOK_N8N";
+    const WEBHOOK_N8N = "https://angiemnq.app.n8n.cloud/webhook-test/alerta-pedagogica";
 
     const btnEnviarAlerta = document.getElementById("btnEnviarAlerta");
     const mensajeAlerta = document.getElementById("mensajeAlerta");
+
+    function setMensaje(text, isError = false) {
+      mensajeAlerta.textContent = text;
+      mensajeAlerta.style.color = isError ? 'crimson' : 'green';
+    }
 
     btnEnviarAlerta.addEventListener("click", async function () {
       const tipo = document.getElementById("tipoAlerta").value;
@@ -55,36 +60,42 @@
       const responsable = document.getElementById("responsableAlerta").value.trim();
 
       if (!descripcion || !responsable) {
-        mensajeAlerta.textContent = "Completa la descripción ficticia y el responsable ficticio.";
+        setMensaje("Completa la descripción ficticia y el responsable ficticio.", true);
         return;
       }
 
       const alerta = {
-        tipo: tipo,
-        descripcion: descripcion,
-        responsable: responsable,
+        tipo,
+        descripcion,
+        responsable,
         origen: "Proyecto pedagógico Programadores para la Paz",
         fecha: new Date().toISOString()
       };
 
+      btnEnviarAlerta.disabled = true;
+      setMensaje('Enviando alerta...');
+
       try {
         const respuesta = await fetch(WEBHOOK_N8N, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(alerta)
         });
 
+        const texto = await respuesta.text();
+
         if (respuesta.ok) {
-          mensajeAlerta.textContent = "Alerta ficticia enviada correctamente a n8n.";
+          setMensaje("Alerta ficticia enviada correctamente a n8n.");
         } else {
-          mensajeAlerta.textContent = "La alerta fue enviada, pero n8n no respondió como se esperaba.";
+          const detalle = texto ? ` Detalle: ${texto}` : '';
+          setMensaje(`n8n respondió con estado ${respuesta.status}.${detalle}`, true);
         }
 
       } catch (error) {
-        mensajeAlerta.textContent = "No se pudo conectar con el Webhook de n8n.";
+        setMensaje(`No se pudo conectar con el Webhook de n8n: ${error.message}`, true);
         console.error(error);
+      } finally {
+        btnEnviarAlerta.disabled = false;
       }
     });
   </script>
